@@ -40,6 +40,7 @@
                 <p class="card-text">With the average <b>55% productivity gain using GitHub Copilot</b>, what are going to do
                     with that money? Grow your team? <b>Work on better problems?</b></p>
                 <p>Visit the <a href="https://github.com/features/copilot">GitHub Copilot website</a> to learn more</p>
+                <p>This calculator assumes using GitHub Copilot Business. Pricing is $19/user.</p>
             </div>
         </div>
 
@@ -57,7 +58,7 @@
                 var salary = parseFloat($('#devSalary').val());
                 var numDevelopers = parseInt($('#numDevelopers').val());
                 var increasedSalary = salary * 1.55;
-                var gain = (increasedSalary - salary) * numDevelopers;
+                var gain = (increasedSalary - salary - 19) * numDevelopers;
                 $('#moneyBack').text(gain.toLocaleString("en-US", { style: "currency", currency: "USD" }));
             }
 
