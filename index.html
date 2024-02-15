@@ -26,16 +26,16 @@
         </div>
         <div class="form-group mt-4">
             <label for="devSalary">Average Developer Salary (Monthly):</label>
-            <input type="number" class="form-control" id="devSalary" value="1500" min="1000" max="5000">
-            <input type="range" class="form-control-range" id="salaryRange" min="800" max="5000" value="1500"
+            <input type="number" class="form-control" id="devSalary" value="1500" min="500" max="5000">
+            <input type="range" class="form-control-range" id="salaryRange" min="500" max="5000" value="1500"
                 step="500">
         </div>
         <div class="form-group">
             <label for="numDevelopers">Number of Developers:</label>
-            <input type="number" class="form-control" id="numDevelopers" value="5" min="1" max="1000">
-            <input type="range" class="form-control-range" id="developersRange" min="1" max="1000" value="5">
+            <input type="number" class="form-control" id="numDevelopers" value="10" min="1" max="1000">
+            <input type="range" class="form-control-range" id="developersRange" min="10" max="100" value="10" step="10">
         </div>
-        <button class="btn btn-primary">Calculate</button>
+        <button class="btn btn-primary" id="btnCalculate">Calculate</button>
 
         <!-- Bootstrap Card -->
         <div class="card" style="margin-top: 30px; display: none;">
@@ -49,12 +49,17 @@
             </div>
         </div>
 
+        <div class="form-group" id="productivityGainContainer" style="margin-top: 30px; display: none;">
+            <label for="numDevelopers"><strong>Still not convinced? Define your own productivity gain (%):</strong></label>
+            <input type="number" class="form-control" id="productivityGain" value="55" min="5" max="100">
+            <input type="range" class="form-control-range" id="productivityRange" min="5" max="100" value="55">
+        </div>
+
         <!-- Footer -->
         <footer class="footer py-3 bg-light mt-5">
             <div class="container">
                 <small>
-                    <span class="text-muted">Disclaimer: This is a simple calculation and actual results may
-                        vary.</span>
+                    <p class="text-muted">Disclaimer: This is a demo app just for fun and not officially associated with GitHub or Microsoft in any way.</p>
                     <p class="text-muted">
                         <i class="fab fa-github"></i>
                         Source code: <a
@@ -70,20 +75,25 @@
         function calculateGain() {
             var salary = parseFloat($('#devSalary').val());
             var numDevelopers = parseInt($('#numDevelopers').val());
-            var increasedSalary = salary * 1.55;
+            var productivityGain = parseFloat($('#productivityGain').val())
+            var productivityGainMultiplier = 1 + (productivityGain/100);
+            var increasedSalary = salary * productivityGainMultiplier;
             var gain = (increasedSalary - salary - 19) * numDevelopers;
             $('#moneyBack').text(gain.toLocaleString("en-US", { style: "currency", currency: "USD" }));
         }
 
-        $('#salaryRange, #devSalary, #numDevelopers, #developersRange').on('input', function () {
+        $('#salaryRange, #devSalary, #numDevelopers, #developersRange, #productivityGain, #productivityRange').on('input', function () {
             $('#devSalary').val($('#salaryRange').val());
             $('#numDevelopers').val($('#developersRange').val());
+            $('#productivityGain').val($('#productivityRange').val())
             calculateGain();
         });
 
         $('.btn-primary').on('click', function () {
             calculateGain();
             $('.card').show();
+            $('#productivityGainContainer').show();
+            $('#btnCalculate').hide();
         });
     </script>
 </body>
