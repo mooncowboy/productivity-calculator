@@ -33,4 +33,4 @@ Your local webserver should now be running on http://localhost:3000
 
 ## Disclaimer
 
-This is a demo app just for fun and not officially associated with GitHub or Microsoft in any way.
+Disclaimer: this is a demo app just for fun and not officially associated with GitHub or Microsoft in any way, even if I am a Microsoft employee.
