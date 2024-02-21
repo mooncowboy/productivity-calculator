@@ -5,6 +5,8 @@ A demo app that calculates how much money companies can get back when adopting [
 
 Live demo: https://mooncowboy.github.io/moneybackcalculator/
 
+![alt text](moneyback2.jpeg)
+
 ## Requirements
 
 - Node.js
